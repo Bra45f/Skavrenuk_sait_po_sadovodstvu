@@ -40,6 +40,22 @@ h1{
     margin: 10px;
     height: 371px;
 }
+.block1 {
+    background-color: #81A684;
+    width: 32%;
+    margin: 10px;
+    height: 371px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.block2 {
+    background-color: #81A684;
+    width: 32%;
+    margin: 10px;
+    height: 371px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
 
 h3{
     color: #FFEEE2;
