@@ -28,13 +28,15 @@ h1{
 .container div {
     float: left;
     margin-bottom: 15px;
-  }
-  .block {
+}
+
+.block {
     background-color: #81A684;
     width: 32%;
     margin: 10px;
     height: 371px;
-  }
+}
+
 h3{
     color: #FFEEE2;
     margin: 25px;
