@@ -4,7 +4,7 @@ body{
 
 #topnav {
     width: 100%;
-    position: static;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: #81A684;
