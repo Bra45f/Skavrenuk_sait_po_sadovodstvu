@@ -1,0 +1,37 @@
+body{
+    background-color: #FFEEE2;
+}
+
+#topnav {
+    width: 100%;
+    position: static;
+    top: 0;
+    left: 0;
+    background-color: #81A684;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+.nav-link {
+    display: inline-block;
+    width: 100px;
+    height: 55px;
+    color: #FFEEE2;
+    /* centering text */
+    text-align: center;    /* horizontally */
+    line-height: 55px;     /* vertically */
+    text-decoration: none;
+}
+#logo {
+    width: 120px;
+    background-color: #81A684;
+    font-weight: bold;
+}
+
+
+
+footer {
+    text-align: center;
+    padding: 5px;
+    background-color: #abbaba;
+    color: #000;
+  }
