@@ -7,7 +7,7 @@ body{
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #81A684;
+    background-color: #466060;
     font-family: Arial, sans-serif;
     font-size: 15px;
 }
@@ -23,7 +23,7 @@ body{
 }
 #logo {
     width: 120px;
-    background-color: #81A684;
+    background-color: #466060;
     font-weight: bold;
 }
 h1{
@@ -35,16 +35,16 @@ h1{
 }
 
 .block {
-    background-color: #81A684;
+    background-color: #466060;
     width: 32%;
     margin: 10px;
-    height: 371px;
+    height: 366px;
 }
 .block1 {
     background-color: #81A684;
     width: 32%;
     margin: 10px;
-    height: 371px;
+    height: 366px;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
 }
@@ -52,7 +52,7 @@ h1{
     background-color: #81A684;
     width: 32%;
     margin: 10px;
-    height: 371px;
+    height: 365px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
 }
@@ -122,9 +122,6 @@ h2{
  }
  .product-img {
     transition: 1s ease-in-out;
- }
- .product-img:hover {
-    transform: scale(1.1);
  }
  .product-img img {
     display: block;
@@ -206,7 +203,7 @@ h2{
     outline: 0;
     padding: 12px;
     color: white;
-    background-color: #000;
+    background-color: #81A684;
     text-align: center;
     cursor: pointer;
     width: 100%;
@@ -228,7 +225,7 @@ footer {
    width: 25%;
  }
  .col-1-2 {
-   background-color: #000000;
+   background-color: #57886C;
    width: 50%;
    color: #ffffff;
  }
