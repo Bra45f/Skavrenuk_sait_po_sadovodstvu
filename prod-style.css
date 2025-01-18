@@ -182,6 +182,23 @@
     font-size: 18px;
 }
 
+.basket{
+    float: right;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+  
+  .salami{
+    background-color: #81A684;
+    color: #FFEEE2;
+    padding: 8px;
+    margin-top: 7px;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
 @media only screen and (max-width: 620px) {
     /* Для мобильных телефонов: */
     .menu, .main, .right {
