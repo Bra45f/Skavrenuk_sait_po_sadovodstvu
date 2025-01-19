@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>БандБаунти - садоводство начинается здесь</title>
     <link rel="stylesheet" href="prod-style.css">
-    <script src="index.js" defer></script>
+    <script src="server.js" defer></script>
 </head>
 <body>
     <div class="bgm-1">
@@ -19,13 +19,37 @@
           <a href="index.html">Главная</a>
           <a href="#">Каталог</a>
           <a href="#">Вики</a>
-    </div>
+          <a href="#">Личный кабинет</a>
+        </div>
 
-    <div class="basket"><a href="#salami">
-        <div class="salami">
-          <img src="img/free-icon-font-shopping-cart (2).png" alt="">
-        </div></a> 
-      </div>
+
+          <div class="basket">
+            <a href="#" id="open-cart">
+              <div class="salami">
+                <img src="img/free-icon-font-shopping-cart (2).png" alt="Корзина">
+              </div>
+            </a>
+          </div>
+          
+          <!-- Popup для корзины -->
+          <div id="cart-popup" class="cart-popup">
+            <div class="cart-popup-content">
+              <span class="close">&times;</span>
+              <h2>Корзина</h2>
+              <ul id="cart-items">
+                <!-- Товары будут добавлены здесь динамически -->
+              </ul>
+              <div class="cart-footer">
+                <p id="total-price">Итого: 0 ₽</p>
+                <button id="clear-cart-button">Очистить корзину</button>
+                <button id="checkout-button">Оформить заказ</button>
+              </div>
+            </div>
+          </div>
+          
+          
+    
+    
 
     <div class="main">
         <h2>Каталог</h2>
@@ -41,11 +65,14 @@
         </div>
         <div class="product-list">          
         <span class="price">1999 ₽</span>
-          <p class="product_name">Сумерки</p>
+          <p class="product_name">Лопатки</p>
           <h4>Не знаю =(</h4>
           <div class="actions">
             <div class="add-to-cart">
-              <a href="" class="cart-button">В корзину</a>
+              <a href="" class="cart-button"
+              data-product-id="1" 
+              data-product-name="Лопатки" 
+              data-product-price="1999">В корзину</a>
             </div>
             </div>
           </div>
