@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Очистить корзину
     clearCartButton.addEventListener('click', () => {
-      if (confirm('Вы уверены, что хотите очистить корзину?')) {
+      if (confirm('Вы действительно хотите очистить корзину?')) {
         cart = [];
         renderCart();
       }
