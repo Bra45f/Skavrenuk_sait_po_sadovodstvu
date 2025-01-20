@@ -217,9 +217,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
-    background: white;
+    background: #FFEEE2;
     padding: 20px;
-    border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
   
@@ -237,16 +236,15 @@
   }
   
   #checkout-button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #57886C;
+    color: #FFEEE2;
     padding: 10px 20px;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
   }
   
   #checkout-button:hover {
-    background-color: #45a049;
+    background-color: #81A684;
   }
 
   #cart-items {
@@ -280,8 +278,8 @@
   }
   
   .remove-item-button {
-    background-color: #f44336;
-    color: white;
+    background-color: #d22c20;
+    color: #FFEEE2;
     border: none;
     border-radius: 4px;
     padding: 5px 10px;
@@ -293,22 +291,21 @@
   }
   
   #clear-cart-button {
-    background-color: #ff9800;
-    color: white;
+    background-color: #FFEEE2;
+    color: rgb(0, 0, 0);
     padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
+    border: 2px solid black;
     cursor: pointer;
     margin-right: 10px;
   }
   
   #clear-cart-button:hover {
-    background-color: #fb8c00;
+    background-color: #e53935;
   }
 
 @media only screen and (max-width: 620px) {
     /* Для мобильных телефонов: */
-    .menu, .main, .right {
+    .menu, .main, .right, .cart-popup-content {
       width: 100%;
     }
   }
