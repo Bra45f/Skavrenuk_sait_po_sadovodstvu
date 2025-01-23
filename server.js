@@ -1,103 +1,96 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const openCartButton = document.getElementById('open-cart');
-  const cartPopup = document.getElementById('cart-popup');
-  const closePopupButton = cartPopup.querySelector('.close');
-  const cartItemsContainer = document.getElementById('cart-items');
-  const totalPriceElement = document.getElementById('total-price');
-  const clearCartButton = document.getElementById('clear-cart-button');
-  let cart = loadCart(); // Загружаем корзину из localStorage
+const express = require('express');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const path = require('path');
+const db = require('./database');
 
-  // Открыть popup
-  openCartButton.addEventListener('click', event => {
-    event.preventDefault();
-    renderCart();
-    cartPopup.style.display = 'block';
-  });
+const app = express();
+const PORT = 3000;
 
-  // Закрыть popup
-  closePopupButton.addEventListener('click', () => {
-    cartPopup.style.display = 'none';
-  });
+app.use(express.static(path.join(__dirname, 'public')));
 
-  // Закрыть popup при клике вне его области
-  window.addEventListener('click', event => {
-    if (event.target === cartPopup) {
-      cartPopup.style.display = 'none';
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(
+  session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+// Пользовательские маршруты
+app.post('/register', (req, res) => {
+  const { name, email, password } = req.body;
+
+  const query = `INSERT INTO users (name, email, password) VALUES (?, ?, ?)`;
+  db.run(query, [name, email, password], function (err) {
+    if (err) {
+      return res.status(400).json({ error: 'Пользователь уже существует!' });
     }
+    res.json({ success: true, message: 'Регистрация успешна!' });
   });
+});
 
-  // Добавление товара в корзину
-  document.querySelectorAll('.cart-button').forEach(button => {
-    button.addEventListener('click', event => {
-      event.preventDefault();
-      const productId = button.dataset.productId;
-      const productName = button.dataset.productName;
-      const productPrice = parseInt(button.dataset.productPrice, 10);
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
 
-      // Проверяем, есть ли уже товар в корзине
-      const existingItem = cart.find(item => item.id === productId);
-      if (existingItem) {
-        existingItem.quantity++;
-      } else {
-        cart.push({ id: productId, name: productName, price: productPrice, quantity: 1 });
-      }
-
-      saveCart(); // Сохраняем корзину после добавления товара
-    });
-  });
-
-  // Очистить корзину
-  clearCartButton.addEventListener('click', () => {
-    if (confirm('Вы уверены, что хотите очистить корзину?')) {
-      cart = [];
-      saveCart(); // Сохраняем пустую корзину
-      renderCart();
+  const query = `SELECT * FROM users WHERE email = ? AND password = ?`;
+  db.get(query, [email, password], (err, user) => {
+    if (err || !user) {
+      return res.status(401).json({ error: 'Неверный email или пароль!' });
     }
+
+    req.session.user = user; // Сохраняем данные пользователя в сессии
+    res.json({ success: true, user });
   });
+});
 
-  // Удалить товар из корзины
-  function removeItem(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    saveCart(); // Сохраняем корзину после удаления товара
-    renderCart();
+app.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Ошибка выхода из системы.' });
+    }
+    res.json({ success: true, message: 'Вы успешно вышли.' });
+  });
+});
+
+// Работа с корзиной
+app.post('/cart', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Пожалуйста, войдите в систему!' });
   }
 
-  // Рендер корзины
-  function renderCart() {
-    cartItemsContainer.innerHTML = ''; // Очистить список товаров
-    let total = 0;
+  const { product_id, quantity } = req.body;
+  const user_id = req.session.user.id;
 
-    cart.forEach(item => {
-      const li = document.createElement('li');
-      li.innerHTML = `
-        <span class="cart-item-name">${item.name}</span>
-        <span class="cart-item-quantity">${item.quantity} x ${item.price} ₽</span>
-        <button class="remove-item-button" data-product-id="${item.id}">Удалить</button>
-      `;
-      cartItemsContainer.appendChild(li);
+  const query = `INSERT INTO carts (user_id, product_id, quantity) VALUES (?, ?, ?)`;
+  db.run(query, [user_id, product_id, quantity], function (err) {
+    if (err) {
+      return res.status(400).json({ error: 'Ошибка добавления в корзину!' });
+    }
+    res.json({ success: true, message: 'Товар добавлен в корзину.' });
+  });
+});
 
-      total += item.quantity * item.price;
-
-      // Добавить обработчик для кнопки "Удалить"
-      li.querySelector('.remove-item-button').addEventListener('click', () => {
-        removeItem(item.id);
-      });
-    });
-
-    totalPriceElement.textContent = `Итого: ${total} ₽`;
+app.get('/cart', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Пожалуйста, войдите в систему!' });
   }
 
-  // Сохранить корзину в localStorage
-  function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }
+  const user_id = req.session.user.id;
 
-  // Загрузить корзину из localStorage
-  function loadCart() {
-    const savedCart = localStorage.getItem('cart');
-    return savedCart ? JSON.parse(savedCart) : [];
-  }
+  const query = `SELECT * FROM carts WHERE user_id = ?`;
+  db.all(query, [user_id], (err, items) => {
+    if (err) {
+      return res.status(500).json({ error: 'Ошибка получения корзины!' });
+    }
+    res.json({ success: true, items });
+  });
+});
 
-  // Рендерим корзину при загрузке страницы
-  renderCart();
+// Запуск сервера
+app.listen(PORT, () => {
+  console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
