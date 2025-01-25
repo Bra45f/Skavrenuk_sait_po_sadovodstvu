@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>БандБаунти - садоводство начинается здесь</title>
+    <link rel="stylesheet" href="wikistyle.css">
+    <link rel="stylesheet" href="logpopup.css">
+    <link rel="stylesheet" href="regpopup.css">
+    <script src="script.js" defer></script>
+    <script src="script-wiki.js" defer></script>
+    <script src="auth.js" defer></script>
+</head>
+<body>
+    <div class="bgm-1">
+        <div class="caption">
+            <span class="border">БандВики</span>
+        </div>
+    </div>
+
+    <div class="pipi" style="overflow:auto">
+        <div class="menu">
+          <a href="index.html">Главная</a>
+          <a href="product.html">Каталог</a>
+          <a href="#salami">Вики</a>
+          <hr class="linia">
+          <!-- Кнопки для вызова форм -->
+          <div class="auth-buttons">
+            <button id="open-register" class="btm-1">Регистрация</button>
+            <button id="open-login" class="btm-1">Вход</button>
+          </div>
+
+<!-- Вывод информации о текущем пользователе -->
+<div id="user-info" style="display: none;" class="user-info">
+  <h2>Привет, <span id="user-name"></span>!</h2>
+  <button id="logout">Выйти</button>
+</div>
+</div>
+
+
+<div id="register-popup" style="display: none;" class="popup-reg">
+<h2>Регистрация</h2>
+<form id="register-form">
+  <label for="reg-name">Имя:</label>
+  <input type="text" id="reg-name" name="name" required>
+  <label for="reg-email">Email:</label>
+  <input type="email" id="reg-email" name="email" required>
+  <label for="reg-password">Пароль:</label>
+  <input type="password" id="reg-password" name="password" required>
+  <button type="submit" class="btm-2">Зарегистрироваться</button>
+</form>
+</div>
+
+<!-- Форма входа -->
+<div id="login-popup" style="display: none;" class="popup-log">
+<h2>Вход</h2>
+<form id="login-form">
+  <label for="login-email">Email:</label>
+  <input type="email" id="login-email" name="email" required>
+  <label for="login-password">Пароль:</label>
+  <input type="password" id="login-password" name="password" required>
+  <button type="submit" class="btm-2">Войти</button>
+</form>
+</div>
+
+
+    <div class="basket">
+      <a href="#" id="open-cart">
+        <div class="salami">
+          <img src="img/free-icon-font-shopping-cart (2).png" alt="Корзина">
+        </div>
+      </a>
+    </div>
+    
+    <!-- Popup для корзины -->
+    <div id="cart-popup" class="cart-popup">
+      <div class="cart-popup-content">
+        <span class="close">&times;</span>
+        <h2>Корзина</h2>
+        <ul id="cart-items">
+          <!-- Товары будут добавлены здесь динамически -->
+        </ul>
+        <div class="cart-footer">
+          <p id="total-price">Итого: 0 ₽</p>
+          <button id="clear-cart-button">Очистить корзину</button>
+          <button id="checkout-button">Оформить заказ</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="main">
+        <h2>Вики</h2>
+        <p>
+          Здесь собрана вся необходимая информация о растениях
+        </p>
+        
+    </div>
+      <div class="right">
+        <h2>О Нас</h2>
+        <p>Здесь вы найдете все, что нужно для успешного выращивания растений и создания красивого сада. 
+          Мы предлагаем полезные советы по уходу за различными видами растений, 
+          подробные инструкции по посадке и выращиванию,
+          а также интересные статьи о новейших тенденциях в садоводстве.
+          <br>
+          Присоединяйтесь к нашему сообществу любителей сада, делитесь своими успехами и задавайте вопросы. 
+          Вместе мы создадим настоящий оазис красоты и гармонии в вашем саду!</p>
+      </div>
+    </div>
+    
+    <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">© copyright</div>
+</body>
+</html>
