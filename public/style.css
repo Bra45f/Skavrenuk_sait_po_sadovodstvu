@@ -37,6 +37,7 @@
 }
 
 .menu a {
+  text-decoration: none;
   background-color: #e5e5e5;
   padding: 8px;
   margin-top: 7px;
