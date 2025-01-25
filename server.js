@@ -39,7 +39,7 @@ app.post('/login', (req, res) => {
   const query = `SELECT * FROM users WHERE email = ? AND password = ?`;
   db.get(query, [email, password], (err, user) => {
     if (err || !user) {
-      return res.status(401).json({ error: 'Неверный email или пароль!' });
+      return res.status(401).json({ error: 'Неверный email или пароль' });
     }
 
     req.session.user = user; // Сохраняем данные пользователя в сессии
@@ -52,7 +52,7 @@ app.post('/logout', (req, res) => {
     if (err) {
       return res.status(500).json({ error: 'Ошибка выхода из системы.' });
     }
-    res.json({ success: true, message: 'Вы успешно вышли.' });
+    res.json();
   });
 });
 
@@ -70,7 +70,7 @@ app.post('/cart', (req, res) => {
     if (err) {
       return res.status(400).json({ error: 'Ошибка добавления в корзину!' });
     }
-    res.json({ success: true, message: 'Товар добавлен в корзину.' });
+    res.json();
   });
 });
 
@@ -92,5 +92,5 @@ app.get('/cart', (req, res) => {
 
 // Запуск сервера
 app.listen(PORT, () => {
-  console.log(`Сервер запущен на http://localhost:${PORT}`);
+  console.log(`Запсук сервера... Адресс сервера: http://localhost:${PORT}`);
 });
