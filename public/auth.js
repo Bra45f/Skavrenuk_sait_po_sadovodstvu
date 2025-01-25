@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.success) {
-            alert('Регистрация успешна! Теперь вы можете войти.');
+            alert('Новый пользователь зарегистрирован');
             registerPopup.style.display = 'none';
           } else {
             alert(data.error || 'Ошибка регистрации.');
