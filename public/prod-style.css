@@ -174,14 +174,6 @@
     display: block;
     width: 100%;
  }
- .product-list {
-    margin-top: 15px;
- }
- .product-list h3 {
-   font-family: Bicubik;
-   font-size: 25px;
-   margin: auto;
- }
  .price {
     color: #CF5C36;
     display: block;
@@ -203,12 +195,11 @@
     float: left;
  }
  .cart-button {
-    text-decoration: none;
-    color: #8C877C;
-    padding-right: 20px;
-    border-right: 1px solid #ddd;
-    transition: .4s linear;
- }
+  font-size: 15px;
+  text-decoration: none;
+  color: #8C877C;
+  transition: .4s linear;
+}
  .cart-button:before {
     content: "";
     font-family: FontAwesome;

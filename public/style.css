@@ -130,23 +130,6 @@
   margin: 5px;
 }
 
-.card button {
-  border: none;
-  outline: 0;
-  padding: 12px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-.card button:hover {
-  opacity: 0.7;
-}
-
-
 .text {
 margin: 5px;
 }
@@ -176,14 +159,6 @@ margin: 5px;
   display: block;
   width: 100%;
 }
-.product-list {
-  margin-top: 15px;
-}
-.product-list h3 {
- font-family: Bicubik;
- font-size: 25px;
- margin: auto;
-}
 .price {
   color: #CF5C36;
   display: block;
@@ -205,10 +180,9 @@ margin: 5px;
   float: left;
 }
 .cart-button {
+  font-size: 15px;
   text-decoration: none;
   color: #8C877C;
-  padding-right: 20px;
-  border-right: 1px solid #ddd;
   transition: .4s linear;
 }
 .cart-button:before {
