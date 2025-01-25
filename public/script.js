@@ -16,17 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
       cartPopup.style.display = 'block';
     });
   
+
+
     // Закрыть popup
     closePopupButton.addEventListener('click', () => {
       cartPopup.style.display = 'none';
     });
-  
+
+
     // Закрыть popup при клике вне его области
     window.addEventListener('click', event => {
       if (event.target === cartPopup) {
         cartPopup.style.display = 'none';
       }
     });
+
+
   
     // Добавление товара в корзину
     document.querySelectorAll('.cart-button').forEach(button => {
@@ -99,6 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const savedCart = localStorage.getItem('cart');
       return savedCart ? JSON.parse(savedCart) : [];
     }
+  
+
   
     // Рендерим корзину при загрузке страницы
     renderCart();

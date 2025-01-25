@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>БандБаунти - садоводство начинается здесь</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="logpopup.css">
+    <link rel="stylesheet" href="regpopup.css">
     <script src="script.js" defer></script>
     <script src="auth.js" defer></script>
 </head>
@@ -35,7 +37,7 @@
 </div>
 
 
-<div id="register-popup" style="display: none;">
+<div id="register-popup" style="display: none;" class="popup-reg">
 <h2>Регистрация</h2>
 <form id="register-form">
   <label for="reg-name">Имя:</label>
@@ -49,7 +51,7 @@
 </div>
 
 <!-- Форма входа -->
-<div id="login-popup" style="display: none;">
+<div id="login-popup" style="display: none;" class="popup-log">
 <h2>Вход</h2>
 <form id="login-form">
   <label for="login-email">Email:</label>
