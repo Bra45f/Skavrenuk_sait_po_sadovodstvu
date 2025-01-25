@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
             userNameSpan.textContent = data.user.name;
             userInfo.style.display = 'block';
             loginPopup.style.display = 'none';
-            alert('Вы успешно вошли!');
           } else {
             alert(data.error || 'Ошибка входа.');
           }
@@ -74,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then((data) => {
           if (data.success) {
             userInfo.style.display = 'none';
-            alert('Вы успешно вышли из системы.');
           }
         });
     });
