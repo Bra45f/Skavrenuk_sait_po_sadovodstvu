@@ -38,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
           if (data.success) {
             alert('Новый пользователь зарегистрирован');
             registerPopup.style.display = 'none';
+            openRegisterButton.style.display = 'none';
+            openLoginButton.style.display = 'none';
           } else {
             alert(data.error || 'Ошибка регистрации.');
           }
@@ -60,6 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
             userNameSpan.textContent = data.user.name;
             userInfo.style.display = 'block';
             loginPopup.style.display = 'none';
+            openRegisterButton.style.display = 'none';
+            openLoginButton.style.display = 'none';
           } else {
             alert(data.error || 'Ошибка входа.');
           }
@@ -73,6 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .then((data) => {
           if (data.success) {
             userInfo.style.display = 'none';
+            openRegisterButton.style.display = 'block';
+            openLoginButton.style.display = 'block';
           }
         });
     });

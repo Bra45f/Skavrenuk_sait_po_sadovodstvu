@@ -47,6 +47,54 @@
     font-size: 20px;
 }
 
+.menu a:hover{
+  cursor: pointer;
+  background-color: #d0d0d0;
+}
+
+.err{
+  background-color: #e5e5e5;
+  padding: 8px;
+  margin-top: 7px;
+  margin-bottom: auto;
+  display: block;
+  width: 100%;
+  color: black;
+  font-size: 20px;
+  cursor: not-allowed;
+}
+
+.linia{
+  height: 3px;
+  background-color: #000;
+}
+
+.btm-1{
+  background-color: #e5e5e5;
+  padding: 8px;
+  margin-top: 7px;
+  display: block;
+  width: 100%;
+  color: black;
+  font-size: 20px;
+  border: 0;
+}
+
+.btm-1:hover{
+  cursor: pointer;
+  background-color: #d0d0d0;
+}
+
+.user-info{
+  background-color: #e5e5e5;
+  padding: 8px;
+  margin-top: 7px;
+  display: block;
+  width: 100%;
+  color: black;
+  font-size: 20px;
+}
+
 .main {
     float: left;
     width: 60%;
