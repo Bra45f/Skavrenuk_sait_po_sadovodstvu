@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <h2 id="welcome-message">Добро пожаловать, </h2>
+    <p id="user-email">Ваш email: </p>
+
+    <form action="/logout" method="POST">
+        <button id="logout-btn">Выйти</button>
+    </form>
+    <a href="/">На главную</a>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('/user')
+                .then(response => {
+                    if (!response.ok) {
+                        window.location.href = "/login"; // Если не авторизован, перенаправляем на вход
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById("welcome-message").innerText = `Добро пожаловать, ${data.username}`;
+                    document.getElementById("user-email").innerText = `Ваш email: ${data.email}`;
+                })
+                .catch(error => console.error("Ошибка загрузки пользователя:", error));
+        });
+        document.getElementById("logout-btn").addEventListener("click", () => {
+        fetch('/logout', { method: 'POST' })
+            .then(() => {
+                window.location.href = "/"; // После выхода отправляем пользователя на главную
+            })
+            .catch(error => console.error("Ошибка выхода:", error));
+    });
+    </script>
+</body>
+</html>
