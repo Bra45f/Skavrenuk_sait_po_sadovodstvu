@@ -12,16 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const openRegisterButton = document.getElementById('open-register');
     const openLoginButton = document.getElementById('open-login');
   
-    // Показать/скрыть попапы
-    openRegisterButton.addEventListener('click', () => {
-      registerPopup.style.display = 'block';
-      loginPopup.style.display = 'none';
-    });
-  
-    openLoginButton.addEventListener('click', () => {
-      loginPopup.style.display = 'block';
-      registerPopup.style.display = 'none';
-    });
   
     // Регистрация
     registerForm.addEventListener('submit', (e) => {

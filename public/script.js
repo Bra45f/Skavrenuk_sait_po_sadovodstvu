@@ -5,10 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartItemsContainer = document.getElementById('cart-items');
     const totalPriceElement = document.getElementById('total-price');
     const clearCartButton = document.getElementById('clear-cart-button');
+    const cartCounter = document.getElementById("cart-counter");
 
 
     let cart = loadCart(); // Загружаем корзину из localStorage
-  
+    let cartCount = JSON.parse(localStorage.getItem("cart")) || []; // Считает добавленные товары
+
+    // Если число добавленных товаров болье нуля - показывает, меньше - исчезает
+    function updateCartCounter() {
+        cartCounter.textContent = cart.length;
+        cartCounter.style.visibility = cart.length > 0 ? "visible" : "hidden"; 
+    } 
+
     // Открыть popup
     openCartButton.addEventListener('click', event => {
       event.preventDefault();
@@ -16,8 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
       cartPopup.style.display = 'block';
     });
   
-
-
     // Закрыть popup
     closePopupButton.addEventListener('click', () => {
       cartPopup.style.display = 'none';
@@ -31,8 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-
-  
     // Добавление товара в корзину
     document.querySelectorAll('.cart-button').forEach(button => {
       button.addEventListener('click', event => {
@@ -50,6 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
   
         saveCart(); // Сохраняем корзину после добавления товара
+
+        // Проверка на добавленные товары и обновление счетчика
+        localStorage.setItem("cart", JSON.stringify(cartCount));
+        updateCartCounter();
       });
     });
   
@@ -58,6 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (confirm('Вы уверены, что хотите очистить корзину?')) {
         cart = [];
         saveCart(); // Сохраняем пустую корзину
+
+        // Проверка на удаление товаров и обновление счетчика
+        updateCartCounter();
         renderCart();
       }
     });
@@ -66,6 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function removeItem(productId) {
       cart = cart.filter(item => item.id !== productId);
       saveCart(); // Сохраняем корзину после удаления товара
+
+      // Проверка на удаление товара и обновление счетчика
+      updateCartCounter();
       renderCart();
     }
   
@@ -104,9 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const savedCart = localStorage.getItem('cart');
       return savedCart ? JSON.parse(savedCart) : [];
     }
-  
 
-  
     // Рендерим корзину при загрузке страницы
     renderCart();
   });

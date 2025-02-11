@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="auth.js" defer></script>
+    <title>Регистрация</title>
+</head>
+<body>
+    <div id="user-info" style="display: none;" class="user-info">
+        <h2>Привет, <span id="user-name"></span>!</h2>
+        <button id="logout">Выйти</button>
+      </div>
+      </div>
+      
+      
+      <div id="register-popup">
+      <h2>Регистрация</h2>
+      <form id="register-form">
+        <label for="reg-name">Имя:</label>
+        <input type="text" id="reg-name" name="name" required>
+        <label for="reg-email">Email:</label>
+        <input type="email" id="reg-email" name="email" required>
+        <label for="reg-password">Пароль:</label>
+        <input type="password" id="reg-password" name="password" required>
+        <button type="submit" class="btm-2">Зарегистрироваться</button>
+      </form>
+      <a href="log.html"><button type="" class="btm-2">Уже есть аккаунт? Войдите!</button></a>
+      <a href="index.html"><button type="" class="btm-2">На главную</button></a>
+      </div>
+</body>
+</html>

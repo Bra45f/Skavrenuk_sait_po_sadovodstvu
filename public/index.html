@@ -25,48 +25,15 @@
           <hr class="linia">
           <!-- Кнопки для вызова форм -->
           <div class="auth-buttons">
-            <button id="open-register" class="btm-1">Регистрация</button>
-            <button id="open-login" class="btm-1">Вход</button>
+            <a href="log.html"><button class="btm-1">Личный кабинет</button></a>
           </div>
-
-<!-- Вывод информации о текущем пользователе -->
-<div id="user-info" style="display: none;" class="user-info">
-  <h2>Привет, <span id="user-name"></span>!</h2>
-  <button id="logout">Выйти</button>
-</div>
-</div>
-
-
-<div id="register-popup" style="display: none;" class="popup-reg">
-<h2>Регистрация</h2>
-<form id="register-form">
-  <label for="reg-name">Имя:</label>
-  <input type="text" id="reg-name" name="name" required>
-  <label for="reg-email">Email:</label>
-  <input type="email" id="reg-email" name="email" required>
-  <label for="reg-password">Пароль:</label>
-  <input type="password" id="reg-password" name="password" required>
-  <button type="submit" class="btm-2">Зарегистрироваться</button>
-</form>
-</div>
-
-<!-- Форма входа -->
-<div id="login-popup" style="display: none;" class="popup-log">
-<h2>Вход</h2>
-<form id="login-form">
-  <label for="login-email">Email:</label>
-  <input type="email" id="login-email" name="email" required>
-  <label for="login-password">Пароль:</label>
-  <input type="password" id="login-password" name="password" required>
-  <button type="submit" class="btm-2">Войти</button>
-</form>
-</div>
-
+        </div>
 
     <div class="basket">
       <a href="#" id="open-cart">
         <div class="salami">
           <img src="img/free-icon-font-shopping-cart (2).png" alt="Корзина">
+           <span id="cart-counter">0</span> <!-- Счетчик товаров -->
         </div>
       </a>
     </div>
@@ -209,7 +176,7 @@
         <div class="product-list">          
         <span class="price">5990 ₽</span>
           <p class="product_name">Тачка</p>
-          <h4>С помощью тачки вы сможете тащить тяжелый груз с легкостью</h4>
+          <h4>Перевозка тяжелых вещей станет проще</h4>
           <div class="stars"></div>
 
           <div class="actions">
