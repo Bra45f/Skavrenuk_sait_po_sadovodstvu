@@ -1,13 +1,14 @@
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const path = require('path');
 const db = require('./database');
 const bcrypt = require('bcryptjs');
 
-
-// Настройка Express
 const app = express();
-const port = 3000;
+const PORT = 3000;
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Middlewares
 app.use(express.static('public'));
@@ -20,9 +21,9 @@ app.use(session({
   cookie: { secure: false }
 }));
 
-// Старт сервера
-app.listen(port, () => {
-  console.log(`Сервер запущен на http://localhost:${port}`);
+// Главная страница
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 // Страница входа
@@ -43,38 +44,6 @@ app.get('/profile', (req, res) => {
     res.redirect('/login');
   }
 });
-
-app.get('/', (req, res) => {
-  if (req.session.user) {
-      res.sendFile(__dirname + '/public/index_logged.html'); // Отображаем другую главную страницу для авторизованных
-  } else {
-      res.sendFile(__dirname + '/public/index.html');
-  }
-});
-
-app.get('/profile', (req, res) => {
-  if (!req.session.user) {
-      return res.redirect('/login'); // Если пользователь не вошел, отправляем его на страницу входа
-  }
-  res.sendFile(__dirname + '/public/profile.html');
-});
-
-app.get('/user', (req, res) => {
-  if (!req.session.user) {
-      return res.status(401).json({ message: "Не авторизован" });
-  }
-  res.json({ username: req.session.user.username, email: req.session.user.email });
-});
-
-app.post('/logout', (req, res) => {
-  req.session.destroy(err => {
-      if (err) {
-          return res.status(500).send("Ошибка при выходе");
-      }
-      res.redirect('/');
-  });
-});
-
 
 // Регистрация пользователя
 app.post('/register', (req, res) => {
@@ -128,6 +97,47 @@ app.post('/logout', (req, res) => {
     if (err) {
       return res.status(500).send('Ошибка при выходе');
     }
-    res.redirect('/login');
+    res.redirect('/');
   });
+});
+
+
+
+// Работа с корзиной
+app.post('/cart', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Пожалуйста, войдите в систему!' });
+  }
+
+  const { product_id, quantity } = req.body;
+  const user_id = req.session.user.id;
+
+  const query = `INSERT INTO carts (user_id, product_id, quantity) VALUES (?, ?, ?)`;
+  db.run(query, [user_id, product_id, quantity], function (err) {
+    if (err) {
+      return res.status(400).json({ error: 'Ошибка добавления в корзину!' });
+    }
+    res.json();
+  });
+});
+
+app.get('/cart', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Пожалуйста, войдите в систему!' });
+  }
+
+  const user_id = req.session.user.id;
+
+  const query = `SELECT * FROM carts WHERE user_id = ?`;
+  db.all(query, [user_id], (err, items) => {
+    if (err) {
+      return res.status(500).json({ error: 'Ошибка получения корзины!' });
+    }
+    res.json({ success: true, items });
+  });
+});
+
+// Запуск сервера
+app.listen(PORT, () => {
+  console.log(`Запсук сервера... Адресс сервера: http://localhost:${PORT}`);
 });
